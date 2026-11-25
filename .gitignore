@@ -1,4 +1,5 @@
 .dotnet-cli/
+.tools/
 **/bin/
 **/obj/
 .vs/

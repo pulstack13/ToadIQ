@@ -35,14 +35,15 @@ dotnet publish src/Moveiq.App/Moveiq.App.csproj --configuration Release --runtim
 
 The publish command creates the self-contained app files used by the installer.
 
-To build the installer locally, first publish the app with the command above and install Inno Setup 6.7.1. Then run:
+To build the MSI installer locally, first publish the app with the command above and install the WiX Toolset 6.0.2 .NET tool. Then run:
 
 ```powershell
-& "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" installer\ToadIQ.iss
+dotnet tool install wix --tool-path .tools/wix --version 6.0.2
+& ".tools\wix\wix.exe" build installer\ToadIQ.wxs -o artifacts\installer\ToadIQ-Setup-1.0.0-win-x64.msi
 ```
 
-The setup file is written to `artifacts/installer`.
+The MSI is written to `artifacts/installer`. It installs ToadIQ for the current Windows user, creates a Start menu shortcut, and registers a standard uninstaller. It is self-contained and does not require a separate .NET installation.
 
 ## Get the Windows installer from GitHub Actions
 
-After a push or pull request build finishes, open the workflow run under **Actions** and download the `ToadIQ-Installer-win-x64` artifact. Run `ToadIQ-Setup-1.0.0-win-x64.exe` to install ToadIQ for your Windows user. The installer adds a Start menu shortcut, optionally adds a desktop shortcut, and includes an uninstaller. It does not need administrator permission or a separate .NET installation.
+After a push or pull request build finishes, open the workflow run under **Actions** and download the `ToadIQ-Installer-win-x64` artifact. Open `ToadIQ-Setup-1.0.0-win-x64.msi` to install ToadIQ for your Windows user. It does not need administrator permission or a separate .NET installation.

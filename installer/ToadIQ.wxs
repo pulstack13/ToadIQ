@@ -1,0 +1,26 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="ToadIQ" Manufacturer="ToadIQ Contributors" Version="1.0.0" UpgradeCode="D04E46B0-9E2C-42E9-9252-9D3C9D6C1670" Scope="perUser">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of ToadIQ is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <Icon Id="ToadIQ.exe" SourceFile="src\Moveiq.App\Assets\ToadIQ.ico" />
+    <Property Id="ARPPRODUCTICON" Value="ToadIQ.exe" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramsFolder" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="ToadIQ" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="ToadIQ" />
+    </StandardDirectory>
+
+    <Feature Id="MainFeature" Title="ToadIQ" Level="1">
+      <Component Id="ApplicationFiles" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="ToadIQExe" Source="artifacts\ToadIQ-win-x64\ToadIQ.exe" KeyPath="yes">
+          <Shortcut Id="StartMenuShortcut" Directory="ApplicationProgramsFolder" Name="ToadIQ" WorkingDirectory="INSTALLFOLDER" Icon="ToadIQ.exe" IconIndex="0" />
+        </File>
+      </Component>
+    </Feature>
+  </Package>
+</Wix>
