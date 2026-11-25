@@ -2,7 +2,7 @@
 
 ![ToadIQ mouse logo](src/Moveiq.App/Assets/ToadIQ.png)
 
-ToadIQ is a Windows mouse control app built around the Portronics Toad One. It uses standard Windows input events and does not require a vendor driver. The interface uses a transparent, mouse-shaped ToadIQ icon.
+ToadIQ is a Windows mouse control app built around the Portronics Toad One. It uses standard Windows input events and does not require a vendor driver. The interface uses a transparent, .
 
 ## Features
 
