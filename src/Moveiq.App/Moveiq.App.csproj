@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Moveiq</RootNamespace>
+    <AssemblyName>ToadIQ</AssemblyName>
+    <ApplicationIcon>Assets\ToadIQ.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\ToadIQ.ico;Assets\ToadIQ.png" />
+    <Resource Include="Assets\ToadIQ.ico" />
+    <Resource Include="Assets\ToadIQ.png" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,185 @@
+<Window x:Class="Moveiq.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ToadIQ" Icon="Assets/ToadIQ.ico" Height="900" Width="1240" MinHeight="720" MinWidth="980"
+        Background="{StaticResource Canvas}" Foreground="{StaticResource Ink}"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+  <Grid Margin="28,22">
+    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <DockPanel LastChildFill="False" Margin="0,0,0,14">
+      <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        <Image Source="Assets/ToadIQ.png" Width="40" Height="40" Margin="0,0,12,0" Stretch="Uniform" />
+        <StackPanel>
+          <TextBlock Text="ToadIQ" FontSize="15" FontWeight="Bold" Foreground="{StaticResource Accent}" />
+          <TextBlock Text="Mouse control center" FontSize="28" FontWeight="SemiBold" Margin="0,4,0,0" />
+          <TextBlock Text="Made for the Portronics Toad One. Customize buttons and see the mouse input Windows reports." FontSize="13" Foreground="{StaticResource Muted}" Margin="0,4,0,0" TextWrapping="Wrap" />
+        </StackPanel>
+      </StackPanel>
+      <Border DockPanel.Dock="Right" Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="18" Padding="14,8" VerticalAlignment="Center">
+        <TextBlock Text="TOAD ONE SETUP" FontSize="11" FontWeight="Bold" Foreground="{StaticResource Accent}" />
+      </Border>
+    </DockPanel>
+
+    <Border Grid.Row="1" Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="14" Padding="18,14" Margin="0,0,0,16">
+      <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="20"/><ColumnDefinition Width="310"/></Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center">
+          <TextBlock Text="Custom button control" FontSize="17" FontWeight="SemiBold" />
+          <TextBlock x:Name="StatusText" Text="OFF · Your mouse works normally." FontSize="13" Foreground="{StaticResource Muted}" Margin="0,4,0,0" TextWrapping="Wrap" />
+        </StackPanel>
+        <Button x:Name="ApplyMappingsButton" Grid.Column="2" Content="Turn on custom buttons" Click="ApplyMappings_Click"
+                MinHeight="66" Padding="18,12" Background="{StaticResource Accent}" Foreground="#090A0F"
+                BorderThickness="0" FontSize="18" FontWeight="Bold" HorizontalContentAlignment="Center"
+                Cursor="Hand" ToolTip="Click to activate your selected mouse actions">
+          <Button.Effect><DropShadowEffect Color="#168A70" BlurRadius="22" ShadowDepth="0" Opacity="0.48" /></Button.Effect>
+          <Button.Template>
+            <ControlTemplate TargetType="Button">
+              <Border x:Name="ButtonShell" Background="{TemplateBinding Background}" CornerRadius="12" Padding="{TemplateBinding Padding}">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonShell" Property="Opacity" Value="0.9" /></Trigger>
+                <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonShell" Property="Opacity" Value="0.78" /></Trigger>
+                <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonShell" Property="Opacity" Value="0.5" /></Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+      </Grid>
+    </Border>
+
+    <ScrollViewer x:Name="MainPageScroll" Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" CanContentScroll="False" PreviewMouseWheel="MainPageScroll_PreviewMouseWheel">
+      <StackPanel>
+        <Grid>
+          <Grid.ColumnDefinitions><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="0.85*"/></Grid.ColumnDefinitions>
+
+          <Border Grid.Column="0" Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="14" Padding="18">
+            <StackPanel>
+              <TextBlock Text="Interactive mouse" FontSize="19" FontWeight="SemiBold" />
+              <TextBlock Text="Select a green button to edit its action." FontSize="12" Foreground="{StaticResource Muted}" Margin="0,4,0,12" />
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="296"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="#0D1116" CornerRadius="10" Padding="4" HorizontalAlignment="Center">
+                  <Canvas Width="288" Height="400">
+                    <Path Data="M144,14 C92,14 66,48 59,95 C51,142 60,185 73,217 C84,244 77,279 68,309 C58,345 82,381 111,390 C129,396 159,396 177,390 C206,381 230,345 220,309 C211,279 204,244 215,217 C228,185 237,142 229,95 C222,48 196,14 144,14 Z" Fill="#12181E" Stroke="#41544E" StrokeThickness="2" />
+                    <Path Data="M140,25 C102,25 79,53 72,96 C66,131 68,158 76,183 C96,196 119,204 140,207 Z" Fill="#10382D" Stroke="#00F5A0" StrokeThickness="1.5" />
+                    <Path Data="M148,25 C186,25 209,53 216,96 C222,131 220,158 212,183 C192,196 169,204 148,207 Z" Fill="#102C33" Stroke="#00E5FF" StrokeThickness="1.5" />
+                    <Path Data="M144,18 L144,151 M74,186 Q144,211 214,186" Stroke="#40514C" StrokeThickness="1.5" />
+                    <Path Data="M4,105 L52,105 L71,119 M284,105 L236,105 L217,119 M4,235 L48,235 L66,235 M4,273 L48,273 L65,273" Stroke="#00E5FF" StrokeThickness="1" StrokeDashArray="2,3" />
+                    <Path Data="M144,179 C119,201 96,215 75,225 M144,179 C169,201 192,215 213,225" Stroke="#2B3836" StrokeThickness="1" />
+                    <Border Canvas.Left="86" Canvas.Top="335" Width="116" Height="28" Background="Transparent" CornerRadius="8"><TextBlock Text="TOAD ONE" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" Foreground="#456A5C" /></Border>
+                    <TextBlock Canvas.Left="3" Canvas.Top="88" Text="M1 · LEFT" FontSize="8" FontWeight="Bold" Foreground="{StaticResource Accent}" />
+                    <TextBlock Canvas.Left="220" Canvas.Top="88" Text="M2 · RIGHT" FontSize="8" FontWeight="Bold" Foreground="{StaticResource Secondary}" />
+                    <TextBlock Canvas.Left="132" Canvas.Top="154" Text="M3" FontSize="8" FontWeight="Bold" Foreground="{StaticResource Secondary}" />
+                    <TextBlock Canvas.Left="4" Canvas.Top="222" Text="M5 · FWD" FontSize="8" FontWeight="Bold" Foreground="{StaticResource Secondary}" />
+                    <TextBlock Canvas.Left="4" Canvas.Top="260" Text="M4 · BACK" FontSize="8" FontWeight="Bold" Foreground="{StaticResource Accent}" />
+                    <Button x:Name="HotspotWheel" Tag="Middle" Click="MouseHotspot_Click" Canvas.Left="135" Canvas.Top="72" Width="18" Height="74" Padding="0" Content="⋮" FontSize="13" Background="#07535B" BorderBrush="{StaticResource Secondary}" Foreground="{StaticResource Secondary}" ToolTip="M3 · scroll wheel click. Click to edit its action." />
+                    <Button x:Name="HotspotForward" Tag="Forward" Click="MouseHotspot_Click" Canvas.Left="52" Canvas.Top="222" Width="22" Height="28" Padding="0" Content="›" Background="#07535B" BorderBrush="{StaticResource Secondary}" Foreground="{StaticResource Secondary}" ToolTip="M5 · Forward side button. Click to edit its action." />
+                    <Button x:Name="HotspotBack" Tag="Back" Click="MouseHotspot_Click" Canvas.Left="49" Canvas.Top="260" Width="22" Height="28" Padding="0" Content="‹" Background="#15352D" BorderBrush="{StaticResource Accent}" Foreground="{StaticResource Accent}" ToolTip="M4 · Back side button. Click to edit its action." />
+                    <Ellipse Canvas.Left="62" Canvas.Top="299" Width="12" Height="12" Fill="#7928CA" Stroke="#D7B4FF" StrokeThickness="1" ToolTip="Hardware DPI cycle button. ToadIQ cannot configure it." />
+                    <TextBlock Canvas.Left="3" Canvas.Top="297" Text="DPI · HW" FontSize="8" FontWeight="Bold" Foreground="#D7B4FF" ToolTip="Hardware DPI cycle button. ToadIQ cannot configure it." />
+                  </Canvas>
+                </Border>
+                <StackPanel Grid.Column="1" Margin="14,2,0,0">
+                  <TextBlock Text="BACK · side" FontWeight="SemiBold" FontSize="11" />
+                  <ComboBox x:Name="BackActionBox" DisplayMemberPath="Name" SelectionChanged="Action_SelectionChanged" MinHeight="35" Padding="7,5" Margin="0,4,0,9" />
+                  <TextBlock Text="FORWARD · side" FontWeight="SemiBold" FontSize="11" />
+                  <ComboBox x:Name="ForwardActionBox" DisplayMemberPath="Name" SelectionChanged="Action_SelectionChanged" MinHeight="35" Padding="7,5" Margin="0,4,0,9" />
+                  <TextBlock Text="SCROLL WHEEL · click" FontWeight="SemiBold" FontSize="11" />
+                  <ComboBox x:Name="MiddleActionBox" DisplayMemberPath="Name" SelectionChanged="Action_SelectionChanged" MinHeight="35" Padding="7,5" Margin="0,4,0,10" />
+                  <TextBlock Text="OPEN AN APP" FontWeight="Bold" FontSize="10" Foreground="{StaticResource Secondary}" Margin="0,2,0,5" />
+                  <Button Content="Choose app…" Click="ChooseButtonApp_Click" HorizontalAlignment="Left" Padding="10,7" Margin="0,0,0,6" />
+                  <TextBlock x:Name="ButtonAppText" Text="No app selected" FontSize="10" Foreground="{StaticResource Muted}" TextTrimming="CharacterEllipsis" ToolTip="Selected application" />
+                  <TextBlock Text="Assign to" FontSize="10" Foreground="{StaticResource Muted}" Margin="0,7,0,0" />
+                  <ComboBox x:Name="AppButtonBox" SelectionChanged="AppButton_SelectionChanged" MinHeight="34" Padding="7,4" Margin="0,6,0,5" />
+                  <Button Content="Assign app" Click="AssignAppToButton_Click" HorizontalAlignment="Left" Padding="12,7" />
+                </StackPanel>
+              </Grid>
+            </StackPanel>
+          </Border>
+
+          <Border Grid.Column="2" Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="14" Padding="22">
+            <StackPanel>
+              <TextBlock Text="Button combinations" FontSize="19" FontWeight="SemiBold" />
+              <TextBlock Text="Press two buttons together to run one action. Leave a row off to keep normal clicks." FontSize="12" Foreground="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,4,0,14" />
+              <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Text="PRESS THESE TOGETHER" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}" />
+                <TextBlock Grid.Column="1" Text="THEN DO THIS" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}" />
+              </Grid>
+              <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="Back + Right click" VerticalAlignment="Center" FontSize="12"/><ComboBox x:Name="ComboAction1" Grid.Column="1" DisplayMemberPath="Name" MinHeight="34" Padding="7,4" /></Grid>
+              <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="Back + Left click" VerticalAlignment="Center" FontSize="12"/><ComboBox x:Name="ComboAction2" Grid.Column="1" DisplayMemberPath="Name" MinHeight="34" Padding="7,4" /></Grid>
+              <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="Forward + Right click" VerticalAlignment="Center" FontSize="12"/><ComboBox x:Name="ComboAction3" Grid.Column="1" DisplayMemberPath="Name" MinHeight="34" Padding="7,4" /></Grid>
+              <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="Forward + Left click" VerticalAlignment="Center" FontSize="12"/><ComboBox x:Name="ComboAction4" Grid.Column="1" DisplayMemberPath="Name" MinHeight="34" Padding="7,4" /></Grid>
+              <Grid Margin="0,0,0,12"><Grid.ColumnDefinitions><ColumnDefinition Width="150"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="Back + Forward" VerticalAlignment="Center" FontSize="12"/><ComboBox x:Name="ComboAction5" Grid.Column="1" DisplayMemberPath="Name" MinHeight="34" Padding="7,4" /></Grid>
+              <TextBlock Text="Example: Back + Right click → Take a screenshot" FontSize="11" Foreground="{StaticResource Muted}" TextWrapping="Wrap" />
+            </StackPanel>
+          </Border>
+        </Grid>
+
+        <Border Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="14" Padding="18" Margin="0,18,0,0">
+          <StackPanel>
+            <TextBlock Text="Live mouse activity" FontSize="16" FontWeight="SemiBold" />
+            <TextBlock Text="Counts while custom buttons are on or the event log is open. These are Windows input events, not sensor health readings." FontSize="11" Foreground="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,3,0,12" />
+            <UniformGrid Columns="4">
+              <StackPanel Margin="0,0,8,0"><TextBlock Text="BUTTON PRESSES" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}"/><TextBlock x:Name="ButtonPressCountText" Text="0" FontSize="22" FontWeight="SemiBold"/></StackPanel>
+              <StackPanel Margin="0,0,8,0"><TextBlock Text="SIDE BUTTONS" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}"/><TextBlock x:Name="SideButtonPressCountText" Text="0" FontSize="22" FontWeight="SemiBold"/></StackPanel>
+              <StackPanel Margin="0,0,8,0"><TextBlock Text="VERTICAL WHEEL EVENTS" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}"/><TextBlock x:Name="VerticalWheelCountText" Text="0" FontSize="22" FontWeight="SemiBold"/></StackPanel>
+              <StackPanel><TextBlock Text="HORIZONTAL WHEEL EVENTS" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Muted}"/><TextBlock x:Name="HorizontalWheelCountText" Text="0" FontSize="22" FontWeight="SemiBold"/></StackPanel>
+            </UniformGrid>
+            <TextBlock x:Name="ActivityLastEventText" Text="Last event: waiting for mouse input" FontSize="11" Foreground="{StaticResource Muted}" Margin="0,10,0,0" />
+          </StackPanel>
+        </Border>
+
+        <Border Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="14" Padding="18" Margin="0,18,0,12">
+          <Grid>
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Live movement oscilloscope" FontSize="16" FontWeight="SemiBold" />
+                <TextBlock x:Name="MovementStatusText" Text="Waiting for mouse movement…" FontSize="11" Foreground="{StaticResource Muted}" Margin="0,3,0,0" />
+              </StackPanel>
+              <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="LATEST INTERVAL" FontSize="9" FontWeight="Bold" Foreground="{StaticResource Muted}" HorizontalAlignment="Right" />
+                <TextBlock x:Name="MovementIntervalText" Text="— ms" FontSize="22" FontWeight="SemiBold" Foreground="{StaticResource Accent}" HorizontalAlignment="Right" />
+              </StackPanel>
+            </Grid>
+            <Grid x:Name="MovementChartGrid" Grid.Row="1" Height="148" Margin="0,14,0,0" Background="#0D1116" ClipToBounds="True" SizeChanged="MovementChart_SizeChanged">
+              <Grid.RowDefinitions><RowDefinition/><RowDefinition/><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+              <Border Grid.Row="1" Height="1" Background="#293039" VerticalAlignment="Top" />
+              <Border Grid.Row="2" Height="1" Background="#293039" VerticalAlignment="Top" />
+              <Border Grid.Row="3" Height="1" Background="#293039" VerticalAlignment="Top" />
+              <Canvas x:Name="MovementChartCanvas" Grid.RowSpan="4" ClipToBounds="True" IsHitTestVisible="False">
+                <Polyline x:Name="MovementTrace" Stroke="{StaticResource Accent}" StrokeThickness="2" StrokeLineJoin="Round" />
+              </Canvas>
+            </Grid>
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <TextBlock x:Name="MovementEventCountText" Text="0 movement events" FontSize="10" Foreground="{StaticResource Muted}" VerticalAlignment="Center" />
+              <TextBlock x:Name="MovementDeltaText" Grid.Column="1" Text="Latest pointer shift: —" FontSize="10" Foreground="{StaticResource Secondary}" HorizontalAlignment="Right" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+            </Grid>
+            <TextBlock Grid.Row="3" Text="Observed Windows pointer-move interval (0–20 ms chart). Not RF latency or hardware polling rate." FontSize="9" Foreground="{StaticResource Muted}" Margin="0,5,0,0" />
+          </Grid>
+        </Border>
+
+        <Expander x:Name="DiagnosticsExpander" Header="Detailed input event log" Expanded="Diagnostics_Expanded" Collapsed="Diagnostics_Collapsed" Background="{StaticResource Surface}" FontSize="12" Padding="14" Margin="0,0,0,12">
+          <DockPanel Margin="0,10,0,0" Height="190">
+            <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,0,0,6">
+              <TextBlock Text="Windows button events" FontWeight="SemiBold" VerticalAlignment="Center" />
+              <Button DockPanel.Dock="Right" Content="Clear" Click="Clear_Click" Padding="8,4" Background="{StaticResource SurfaceRaised}" BorderThickness="0" />
+            </DockPanel>
+            <ListView x:Name="EventsList" BorderThickness="0" Background="{StaticResource Surface}" FontSize="11">
+              <ListView.View><GridView>
+                <GridViewColumn Header="Time" Width="90" DisplayMemberBinding="{Binding Time}" />
+                <GridViewColumn Header="Button" Width="170" DisplayMemberBinding="{Binding Name}" />
+                <GridViewColumn Header="Details" Width="300" DisplayMemberBinding="{Binding Details}" />
+              </GridView></ListView.View>
+            </ListView>
+          </DockPanel>
+        </Expander>
+      </StackPanel>
+    </ScrollViewer>
+    <TextBlock Grid.Row="3" Text="Mappings stay on only while ToadIQ is open." Foreground="{StaticResource Muted}" FontSize="11" Margin="0,10,0,0" />
+  </Grid>
+</Window>
