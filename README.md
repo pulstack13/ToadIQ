@@ -33,8 +33,16 @@ To publish a self-contained Windows x64 executable:
 dotnet publish src/Moveiq.App/Moveiq.App.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false --output artifacts/ToadIQ-win-x64
 ```
 
-The same publish command runs in the GitHub Actions workflow. Its build artifact contains `ToadIQ.exe`.
+The publish command creates the self-contained app files used by the installer.
 
-## Get the Windows executable from GitHub Actions
+To build the installer locally, first publish the app with the command above and install Inno Setup 6.7.1. Then run:
 
-After a push or pull request build finishes, open the workflow run under **Actions** and download the `ToadIQ-win-x64` artifact. It contains a self-contained Windows x64 executable.
+```powershell
+& "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" installer\ToadIQ.iss
+```
+
+The setup file is written to `artifacts/installer`.
+
+## Get the Windows installer from GitHub Actions
+
+After a push or pull request build finishes, open the workflow run under **Actions** and download the `ToadIQ-Installer-win-x64` artifact. Run `ToadIQ-Setup-1.0.0-win-x64.exe` to install ToadIQ for your Windows user. The installer adds a Start menu shortcut, optionally adds a desktop shortcut, and includes an uninstaller. It does not need administrator permission or a separate .NET installation.
